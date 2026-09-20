@@ -1,0 +1,93 @@
+{
+  "delayMs": 1500,
+  "maxSteps": 20,
+  "sources": [
+    {
+      "id": "aiedu",
+      "name": "aiEDU / Greenhouse",
+      "seeds": [
+        "https://job-boards.greenhouse.io/aiedu"
+      ],
+      "hosts": [
+        "job-boards.greenhouse.io"
+      ],
+      "listingPattern": "^/aiedu/jobs/[0-9]+",
+      "maxListings": 8
+    },
+    {
+      "id": "handshake",
+      "name": "Handshake / Ashby",
+      "seeds": [
+        "https://jobs.ashbyhq.com/handshake/bd12564f-bad3-4a53-a89d-a7f3d7c44eb4/",
+        "https://jobs.ashbyhq.com/handshake"
+      ],
+      "hosts": [
+        "jobs.ashbyhq.com"
+      ],
+      "listingPattern": "^/handshake/[a-f0-9-]{36}/?$",
+      "maxListings": 8
+    },
+    {
+      "id": "wellfound",
+      "name": "Wellfound",
+      "seeds": [
+        "https://wellfound.com/role/r/software-engineer"
+      ],
+      "hosts": [
+        "wellfound.com"
+      ],
+      "listingPattern": "/jobs/[0-9]+-",
+      "maxListings": 8
+    },
+    {
+      "id": "remoteok",
+      "name": "Remote OK",
+      "seeds": [
+        "https://remoteok.com/remote-engineer-jobs"
+      ],
+      "hosts": [
+        "remoteok.com"
+      ],
+      "listingPattern": "^/remote-jobs/[^/]+",
+      "maxListings": 8
+    },
+    {
+      "id": "upwork",
+      "name": "Upwork",
+      "seeds": [
+        "https://www.upwork.com/nx/search/jobs/?q=MCP%20integration&sort=recency",
+        "https://www.upwork.com/nx/search/jobs/?q=AI%20automation&sort=recency"
+      ],
+      "hosts": [
+        "www.upwork.com"
+      ],
+      "listingPattern": "^/(freelance-jobs/apply/|jobs/[^/]*~[0-9]+)",
+      "maxListings": 10,
+      "nextSelector": "a[data-test=\"next-page\"]"
+    },
+    {
+      "id": "gofractional",
+      "name": "Go Fractional",
+      "seeds": [
+        "https://www.gofractional.com/jobs/engineering"
+      ],
+      "hosts": [
+        "www.gofractional.com"
+      ],
+      "listingPattern": "^/(job|jobs)/[^/]+/[^/]+|^/job/[^/]+",
+      "maxListings": 10
+    },
+    {
+      "id": "weworkremotely",
+      "name": "We Work Remotely",
+      "seeds": [
+        "https://weworkremotely.com/categories/remote-programming-jobs"
+      ],
+      "hosts": [
+        "weworkremotely.com"
+      ],
+      "listingPattern": "^/remote-jobs/[^/]+",
+      "maxListings": 8
+    }
+  ]
+}

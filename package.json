@@ -1,0 +1,26 @@
+{
+  "name": "local-job-assistant",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "jobs": "bun src/cli.ts",
+    "test": "bun test",
+    "check": "tsc --noEmit",
+    "start": "bun src/server.ts",
+    "smoke": "bun scripts/smoke-localbase.ts",
+    "service": "bun scripts/service.ts",
+    "check:http": "bun scripts/check-http.ts",
+    "check:browser": "bun scripts/check-browser-ui.ts",
+    "validate:data": "bun scripts/validate-data.ts"
+  },
+  "dependencies": {
+    "nodemailer": "^10.0.10",
+    "playwright": "^1.63.0",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@types/bun": "1.3.14",
+    "@types/nodemailer": "^8.0.2",
+    "typescript": "^5.9.3"
+  }
+}

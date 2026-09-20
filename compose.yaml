@@ -1,0 +1,19 @@
+services:
+  browser:
+    build: ./docker/browser
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:46080:6080"
+      - "127.0.0.1:49222:9222"
+    volumes:
+      - browser-profile:/home/scout/profile
+    shm_size: 1gb
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "--silent", "http://127.0.0.1:9223/json/version"]
+      interval: 10s
+      timeout: 3s
+      retries: 6
+volumes:
+  browser-profile:

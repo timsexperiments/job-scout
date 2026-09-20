@@ -1,0 +1,11 @@
+{
+  "annualTargetUsd": 100000,
+  "minimumHourlyUsd": null,
+  "maximumWeeklyHours": null,
+  "location": null,
+  "remoteOnly": null,
+  "keywords": [],
+  "maxAgeDays": 30,
+  "shortlistSize": 10,
+  "autoRefresh": false
+}

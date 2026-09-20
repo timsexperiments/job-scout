@@ -1,0 +1,21 @@
+import { strict as assert } from "node:assert";
+
+const base = "http://127.0.0.1:4317";
+const page = await fetch(base);
+assert.equal(page.status, 200);
+assert.match(page.headers.get("content-security-policy") ?? "", /frame-ancestors 'none'/);
+for (const path of ["/app.js", "/style.css"]) assert.equal((await fetch(base + path)).status, 200);
+const state = await (await fetch(base + "/api/state")).json();
+assert.equal(typeof state.token, "string");
+assert.ok(Array.isArray(state.jobs));
+assert.equal(state.preferences.minimumHourlyUsd, 135);
+const csrf = await fetch(base + "/api/preferences", { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" });
+assert.equal(csrf.status, 403);
+const crossOrigin = await fetch(base + "/api/preferences", { method: "POST", headers: { "Content-Type": "application/json", "X-Scout-Token": state.token, Origin: "https://example.com" }, body: "{}" });
+assert.equal(crossOrigin.status, 403);
+const invalid = await fetch(base + "/api/import", { method: "POST", headers: { "Content-Type": "application/json", "X-Scout-Token": state.token }, body: JSON.stringify({ url: "javascript:alert(1)" }) });
+assert.equal(invalid.status, 400);
+assert.equal((await fetch(base + "/.env")).status, 404);
+assert.equal((await fetch(base + "/data/profile.json")).status, 404);
+assert.equal((await fetch(base + "/api/state", { headers: { Host: "evil.example" } })).status, 403);
+process.stdout.write("HTTP checks passed: local UI, state, CSRF, host validation, import rejection, private-file isolation.\n");
